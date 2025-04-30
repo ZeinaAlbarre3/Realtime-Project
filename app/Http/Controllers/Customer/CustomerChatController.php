@@ -16,12 +16,15 @@ class CustomerChatController extends Controller
         $this->chatService = $chatService;
     }
 
-    public function view(Conversation $conversation)
+    public function view()
     {
         $user = Auth::user();
-
         $conversation = $this->chatService->getOrCreateConversationForUser($user);
+        return redirect()->route('customer.chat.show', ['conversation' => $conversation->id]);
+    }
 
-        return $this->chatService->view($conversation,'customer.chat');
+    public function show(Conversation $conversation)
+    {
+        return $this->chatService->view($conversation, 'customer.chat');
     }
 }

@@ -15,5 +15,23 @@
         </div>
     </div>
     <a href="{{ route('customer.chat.view') }}">Send message to support staff</a>
+    <div
+        x-data="{ show: false, message: '' }"
+        x-show="show"
+        x-transition
+        x-init="
+            window.addEventListener('chat-notify', e => {
+                message = e.detail.message;
+                show = true;
+                setTimeout(() => show = false, 5000);
+            });
+        "
+        class="fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded shadow-lg text-sm z-50"
+        style="display: none;"
+    >
+        <span x-text="message"></span>
+    </div>
 
+    @vite(['resources/js/app.js'])
+    <script src="//unpkg.com/alpinejs" defer></script>
 </x-app-layout>

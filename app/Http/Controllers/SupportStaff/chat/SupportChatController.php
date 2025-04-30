@@ -27,8 +27,10 @@ class SupportChatController extends Controller
         ]);
     }
 
-    public function view(Conversation $conversation){
+    public function view(Conversation $conversation)
+    {
         $this->chatService->assignSupportIfNeeded($conversation,auth('support')->user());
+
         return $this->chatService->view($conversation,'support.chat.view');
     }
 }
