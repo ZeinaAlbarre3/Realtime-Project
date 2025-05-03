@@ -33,6 +33,9 @@ Broadcast::channel('notification.{type}.{id}', function ($user, $type, $id) {
 
 }, ['guards' => ['web', 'support']]);
 
+
 Broadcast::channel('notification.all.support', function ($user, $id) {
     return true;
 }, ['guards' => ['web', 'support']]);
+
+
